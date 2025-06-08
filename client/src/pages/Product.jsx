@@ -5,6 +5,7 @@ import axios from 'axios';
 import CartContext from '../context/CartContext';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext';
+const API_URL = import.meta.env.VITE_API_URL; // ✅ Use env variable
 
 export default function Product() {
   const { id } = useParams();
@@ -111,7 +112,7 @@ export default function Product() {
   // Normalize single image URL
   const normalizeImage = img => {
     if (!img) return '';
-    return img.startsWith('/uploads') ? `http://localhost:5000${img}` : img;
+    return img.startsWith('/uploads') ? `${API_URL}${img}` : img;
   };
 
   return (

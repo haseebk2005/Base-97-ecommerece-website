@@ -6,6 +6,7 @@ import AuthContext from '../context/AuthContext.jsx';
 import CartContext from '../context/CartContext';
 import Footer from '../components/Footer.jsx';
 import { motion } from 'framer-motion';
+const API_URL = import.meta.env.VITE_API_URL; // ✅ Use env variable
 
 export default function Order() {
   const { id } = useParams();
@@ -48,7 +49,7 @@ export default function Order() {
 
   const normalizeImage = (img) => {
     if (!img) return '';
-    return img.startsWith('/uploads') ? `http://localhost:5000${img}` : img;
+    return img.startsWith('/uploads') ? `${API_URL}${img}` : img;
   };
 
   if (loading)

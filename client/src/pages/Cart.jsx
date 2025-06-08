@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CartContext from '../context/CartContext';
 import { motion } from 'framer-motion';
+const API_URL = import.meta.env.VITE_API_URL; // ✅ Use env variable
 
 export default function Cart() {
   const { cartItems, removeItem, addItem, clearCart } = useContext(CartContext);
@@ -37,7 +38,7 @@ export default function Cart() {
   const normalizeImage = (img) => {
     if (!img) return '';
     return img.startsWith('/uploads')
-      ? `http://localhost:5000${img}`
+      ? `${API_URL}${img}`
       : img;
   };
 

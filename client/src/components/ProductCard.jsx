@@ -1,6 +1,7 @@
 // client/src/components/ProductCard.jsx
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+const API_URL = import.meta.env.VITE_API_URL; // ✅ Use env variable
 
 export default function ProductCard({ product }) {
   // If `product.image` is a relative path (e.g. "/uploads/1623456789012_myfile.png"),
