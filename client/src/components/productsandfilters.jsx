@@ -67,7 +67,7 @@ export default function ProductnFilter() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 md:px-8 bg-gray-100/40">
+    <div className="min-h-screen py-8 px-4 md:px-8 ">
       {/* Promo Banner */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
@@ -79,7 +79,7 @@ export default function ProductnFilter() {
           Get your <Link to={'affiliate/request'} className="font-semibold underline hover:text-blue-200 transition">Affiliate link</Link> now
         </p>
       </motion.div>
-
+    
       {/* Mobile Filters Button */}
       <div className="lg:hidden mb-6">
         <button 
@@ -388,7 +388,7 @@ export default function ProductnFilter() {
                 {products.slice(0, visibleCount).map((p, idx) => (
                   <motion.div
                     key={p.id}
-                    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.05, duration: 0.3 }}
@@ -414,14 +414,7 @@ export default function ProductnFilter() {
                       </div>
                     )}
 
-                    {/* Quick Add */}
-                    <div className="px-4 pb-4">
-                      <button
-                        className="w-full py-2.5 bg-gradient-to-r from-[#3c9aab] to-teal-600 text-white font-medium rounded-lg hover:opacity-90 transition"
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
+                    
                   </motion.div>
                 ))}
               </div>

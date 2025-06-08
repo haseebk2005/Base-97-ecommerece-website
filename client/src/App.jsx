@@ -22,6 +22,7 @@ import AdminCustomers from './pages/AdminCustomers.jsx';
 import ReviewForm from './pages/ReviewForm.jsx';
 import AdminReviews from './pages/AdminReviews.jsx';
 import BlogPage from './pages/blog.jsx'
+import ShoppingPage from './pages/shopping.jsx'
 export default function App() {
   return (
     <BrowserRouter>
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/blog"           element={<BlogPage/>} />
         <Route path="/product/:id"    element={<Product/>} />
         <Route path="/cart"           element={<Cart/>} />
+        <Route path="/shopping"           element={<ShoppingPage/>} />
         <Route path="/checkout"       element={
           <ProtectedRoute><Checkout/></ProtectedRoute>
         }/>

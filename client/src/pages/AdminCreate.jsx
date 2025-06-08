@@ -9,7 +9,7 @@ export default function AdminCreate() {
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
 
-  const SIZE_OPTIONS = ['SM', 'MD', 'LG', 'XL', '2XL'];
+  const SIZE_OPTIONS = ['SM', 'MD', 'LG', 'XL', '2XL', '3XL', '4XL'];
 
   const [product, setProduct] = useState({
     name: '',

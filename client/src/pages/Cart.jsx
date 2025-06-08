@@ -43,7 +43,7 @@ export default function Cart() {
 
   return (
     <motion.div
-      className="min-h-screen mt-20 bg-gray-50 px-4 py-12"
+      className="min-h-screen mt-20 px-4 py-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
@@ -56,7 +56,7 @@ export default function Cart() {
           initial="hidden"
           animate="visible"
         >
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl font-bold text-white mb-4">
             Shopping Cart
           </h2>
 

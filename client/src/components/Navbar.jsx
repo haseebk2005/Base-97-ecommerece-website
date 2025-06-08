@@ -88,6 +88,7 @@ export default function Navbar() {
         animate="visible"
       >
 <Link to="/" className="hover:text-gray-200">Home</Link>
+<Link to="/shopping" className="hover:text-gray-200">Shopping</Link>
 <Link to="/blog" className=" text-white">Blog</Link>
         
 
@@ -127,6 +128,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
           >
             <Link to="/" onClick={toggleMenu}>Home</Link>
+            <Link to="/Shopping" onClick={toggleMenu}>Shopping</Link>
             <Link to="/blog" onClick={toggleMenu}>Blog</Link>
             {user && (
               <>
