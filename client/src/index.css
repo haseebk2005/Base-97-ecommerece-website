@@ -39,7 +39,7 @@ body {
   /* hide scrollbars in IE/Edge if you still need it */
   -ms-overflow-style: none;
   /* shorthand: image, no-repeat, centered, fixed */
-  background: url('src/assets/background.png') no-repeat center center fixed;
+background: linear-gradient(to bottom, #111827, #1f2937); /* gray-900 to gray-800 */
 
   /* make sure it fills the viewport */
   background-size: cover;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import image1 from '../assets/hero1.png';
+import image2 from '../assets/hero2.png';
+import image3 from '../assets/hero3.png';
+import image4 from '../assets/hero4.png';
 
-const images = [
-  '/src/assets/hero1.png',
-  '/src/assets/hero2.png',
-  '/src/assets/hero3.png',
-  '/src/assets/hero4.png',
-];
+// Use imported image modules instead of string paths
+const images = [image1, image2, image3, image4];
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -161,7 +161,7 @@ export default function HeroSection() {
                 <div key={index} className="flex flex-col items-center text-center bg-[#0e4a52] bg-opacity-50 p-5 rounded-xl backdrop-blur-sm">
                   <div className="mb-3">{item.icon}</div>
                   <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                  <p className="text-gray-300 text-sm">{item.description}</p>
+                  <p className="#markdown">{item.description}</p>
                 </div>
               ))}
             </div>
