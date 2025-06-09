@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminCustomers() {
   const { token } = useContext(AuthContext);
@@ -16,7 +17,7 @@ export default function AdminCustomers() {
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
   useEffect(() => {
-    axios.get('/api/admin/users', config)
+    axios.get(`${API_URL}/api/admin/users`, config)
       .then(res => setUsers(res.data))
       .catch(err => setError(err.response?.data?.message || err.message))
       .finally(() => setLoading(false));

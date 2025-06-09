@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 import { motion } from 'framer-motion';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function ReviewForm() {
   const { token } = useContext(AuthContext);
@@ -19,7 +20,7 @@ export default function ReviewForm() {
 
   // Load product list for dropdown
   useEffect(() => {
-    axios.get('/api/products')
+    axios.get(`${API_URL}/api/products`)
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -29,7 +30,7 @@ export default function ReviewForm() {
     setError(''); 
     setLoading(true);
     try {
-      await axios.post('/api/reviews', form, config);
+      await axios.post(`${API_URL}/api/reviews`, form, config);
       setSuccess(true);
       setTimeout(() => navigate('/'), 2000);
     } catch (err) {

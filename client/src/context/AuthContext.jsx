@@ -1,5 +1,6 @@
 import { createContext, useReducer } from 'react';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AuthContext = createContext();
 const initialState = {
@@ -25,11 +26,11 @@ export function AuthProvider({ children }){
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const login = async (email,password) => {
-    const { data } = await axios.post('/api/auth/login',{ email,password });
+    const { data } = await axios.post(`${API_URL}/api/auth/login`,{ email,password });
     dispatch({ type:'LOGIN', payload:{ user:data, token:data.token } });
   };
   const register = async (name,email,contact,password) => {
-    const { data } = await axios.post('/api/auth/register',{ name,email,contact,password });
+    const { data } = await axios.post(`${API_URL}/api/auth/register`,{ name,email,contact,password });
     dispatch({ type:'LOGIN', payload:{ user:data, token:data.token } });
   };
   const logout = () => dispatch({ type:'LOGOUT' });

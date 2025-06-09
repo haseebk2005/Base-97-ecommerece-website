@@ -2,6 +2,7 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AffiliateRequest() {
   const { token } = useContext(AuthContext);
@@ -13,7 +14,7 @@ export default function AffiliateRequest() {
     setMsg(''); 
     setLoading(true);
     try {
-      const { data } = await axios.post('/api/affiliate', {}, config);
+      const { data } = await axios.post(`${API_URL}/api/affiliate`, {}, config);
       setMsg(`Request submitted! Status: ${data.status}`);
     } catch (err) {
       setMsg(err.response?.data?.message || err.message);

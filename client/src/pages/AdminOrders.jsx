@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminOrders() {
   const { token } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export default function AdminOrders() {
 
   // Fetch all orders with user info
   useEffect(() => {
-    axios.get('/api/orders', config)
+    axios.get(`${API_URL}/api/orders`, config)
       .then(res => setOrders(res.data))
       .catch(err => setError(err.response?.data?.message || err.message))
       .finally(() => setLoading(false));
@@ -29,7 +30,7 @@ export default function AdminOrders() {
     try {
       // Backend route: PUT /api/admin/orders/:id/status
       const { data } = await axios.put(
-        `/api/admin/orders/${id}/status`,
+        `${API_URL}/api/admin/orders/${id}/status`,
         { status: newStatus },
         config
       );

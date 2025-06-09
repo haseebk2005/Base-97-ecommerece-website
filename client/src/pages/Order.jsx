@@ -6,7 +6,7 @@ import AuthContext from '../context/AuthContext.jsx';
 import CartContext from '../context/CartContext';
 import Footer from '../components/Footer.jsx';
 import { motion } from 'framer-motion';
-  const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Order() {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export default function Order() {
     const fetchOrder = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const { data } = await axios.get(`/api/orders/${id}`, config);
+        const { data } = await axios.get(`${API_URL}/api/orders/${id}`, config);
         setOrder(data);
       } catch (err) {
         console.error('Order fetch error:', err.response?.data || err.message);

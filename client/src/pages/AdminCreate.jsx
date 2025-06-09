@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminCreate() {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export default function AdminCreate() {
         };
 
         const { data } = await axios.post(
-          '/api/upload',
+          `${API_URL}/api/upload`,
           formData,
           uploadConfig
         );
@@ -88,7 +89,7 @@ export default function AdminCreate() {
           'Content-Type': 'application/json',
         },
       };
-      await axios.post('/api/products', productData, config);
+      await axios.post(`${API_URL}/api/products`, productData, config);
       navigate('/admin');
     } catch (err) {
       setError(err.response?.data?.message || err.message);

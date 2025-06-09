@@ -6,6 +6,7 @@ import { Link }                             from 'react-router-dom';
 import { motion }                           from 'framer-motion';
 import Chart                                from 'chart.js/auto';
 import AuthContext                          from '../context/AuthContext.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminDashboard() {
   const { token } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export default function AdminDashboard() {
 
   // 1) Fetch dashboard metrics
   useEffect(() => {
-    axios.get('/api/admin/metrics', config)
+    axios.get(`${API_URL}/api/admin/metrics`, config)
       .then(res => setMetrics(res.data))
       .catch(err => console.error('Metrics fetch error:', err));
   }, [token]);
@@ -80,14 +81,14 @@ export default function AdminDashboard() {
 
   // 3) Also load products for the table
   useEffect(() => {
-    axios.get('/api/products', config)
+    axios.get(`${API_URL}/api/products`, config)
       .then(res => setProducts(res.data))
       .catch(err => console.error('Products fetch error:', err));
   }, [token]);
 
   const deleteProduct = async id => {
     if (!window.confirm('Delete this product?')) return;
-    await axios.delete(`/api/products/${id}`, config);
+    await axios.delete(`${API_URL}/api/products/${id}`, config);
     setProducts(prev => prev.filter(p => p.id !== id));
   };
 

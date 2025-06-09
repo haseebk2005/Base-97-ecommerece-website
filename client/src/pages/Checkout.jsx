@@ -61,7 +61,7 @@ export default function Checkout() {
       }
 
       const { data: order } = await axios.post(
-        '/api/orders',
+        `${API_URL}/api/orders`,
         payload,
         config
       );

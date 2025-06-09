@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminEdit() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function AdminEdit() {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `/api/products/${id}`,
+          `${API_URL}/api/products/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setProduct({
@@ -102,13 +103,13 @@ export default function AdminEdit() {
             'Content-Type': 'multipart/form-data',
           },
         };
-        const { data } = await axios.post('/api/upload', formData, uploadConfig);
+        const { data } = await axios.post(`${API_URL}/api/upload`, formData, uploadConfig);
         imageUrl = data.url;
       }
 
       const productData = { ...product, image: imageUrl, sizes: product.sizes };
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      await axios.put(`/api/products/${id}`, productData, config);
+      await axios.put(`${API_URL}/api/products/${id}`, productData, config);
       navigate('/admin');
     } catch (err) {
       console.error('Update error:', err);

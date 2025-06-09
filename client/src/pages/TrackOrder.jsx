@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext.jsx';
 import { motion } from 'framer-motion';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function TrackOrder() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function TrackOrder() {
     const fetchOrder = async () => {
       try {
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const { data } = await axios.get(`/api/orders/${id}`, config);
+        const { data } = await axios.get(`${API_URL}/api/orders/${id}`, config);
         setOrder(data);
       } catch (err) {
         setError(err.response?.data?.message || err.message);

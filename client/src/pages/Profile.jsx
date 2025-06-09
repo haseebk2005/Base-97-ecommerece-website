@@ -3,6 +3,7 @@ import AuthContext from '../context/AuthContext.jsx';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import Footer from '../components/Footer.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Profile() {
   const { user, token, logout } = useContext(AuthContext);
@@ -23,7 +24,7 @@ export default function Profile() {
   const fetchOrders = async () => {
     try {
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      const { data } = await axios.get('/api/orders/myorders', config);
+      const { data } = await axios.get(`${API_URL}/api/orders/myorders`, config);
       setOrders(data);
     } catch (err) {
       console.error('Failed to fetch orders:', err);
@@ -38,7 +39,7 @@ export default function Profile() {
     setIsSubmitting(true);
     try {
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      await axios.put('/api/users/profile', form, config);
+      await axios.put(`${API_URL}/api/users/profile`, form, config);
       setMessage('Profile updated. Please log in again.');
       setTimeout(() => logout(), 2000);
     } catch (err) {

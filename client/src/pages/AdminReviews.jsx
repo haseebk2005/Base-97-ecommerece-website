@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminReviews() {
   const { token } = useContext(AuthContext);
@@ -13,7 +14,7 @@ export default function AdminReviews() {
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
   useEffect(() => {
-    axios.get('/api/admin/reviews', config)
+    axios.get(`${API_URL}/api/admin/reviews`, config)
       .then(res => setReviews(res.data))
       .catch(err => setError(err.response?.data?.message || err.message))
       .finally(() => setLoading(false));
@@ -21,7 +22,7 @@ export default function AdminReviews() {
 
   const deleteReview = async id => {
     try {
-      await axios.delete(`/api/reviews/${id}`, config);
+      await axios.delete(`${API_URL}/api/reviews/${id}`, config);
       setReviews(prev => prev.filter(r => r.id !== id));
       setConfirmDelete(null);
     } catch (err) {

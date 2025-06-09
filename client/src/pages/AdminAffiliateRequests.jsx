@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminAffiliateRequests() {
   const { token } = useContext(AuthContext);
@@ -10,7 +11,7 @@ export default function AdminAffiliateRequests() {
   const config = { headers: { Authorization: `Bearer ${token}` } };
 
   useEffect(() => {
-    axios.get('/api/affiliate', config)
+    axios.get(`${API_URL}/api/affiliate`, config)
       .then(res => {
         setReqs(res.data);
         setLoading(false);
@@ -23,7 +24,7 @@ export default function AdminAffiliateRequests() {
 
   const act = async (id, verb) => {
     setReqs(prev => prev.map(r => r.id === id ? {...r, status: 'Processing...'} : r));
-    await axios.put(`/api/affiliate/${id}/${verb}`, {}, config);
+    await axios.put(`${API_URL}/api/affiliate/${id}/${verb}`, {}, config);
     setReqs(prev => prev.map(r => r.id === id ? {...r, status: verb === 'approve' ? 'Approved' : 'Rejected'} : r));
   };
 
