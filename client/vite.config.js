@@ -8,7 +8,6 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: '/',
     plugins: [react(), tailwindcss()],
     server: {
       host: true,
