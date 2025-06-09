@@ -61,7 +61,7 @@ const BlogPage = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link 
-              to="/" 
+              to="/Shopping" 
               className="inline-block bg-gradient-to-r from-cyan-600 to-teal-600 text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-all shadow-lg hover:shadow-xl"
             >
               Shop Collection

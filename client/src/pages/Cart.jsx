@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CartContext from '../context/CartContext';
 import { motion } from 'framer-motion';
+  const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Cart() {
   const { cartItems, removeItem, addItem, clearCart } = useContext(CartContext);
@@ -37,7 +38,7 @@ export default function Cart() {
   const normalizeImage = (img) => {
     if (!img) return '';
     return img.startsWith('/uploads')
-      ? `http://localhost:5000${img}`
+      ? `${API_URL}${img}`
       : img;
   };
 
@@ -67,7 +68,7 @@ export default function Cart() {
                 Your Cart is Empty
               </p>
               <button
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/Shopping')}
                 className="mt-2 px-6 py-3 bg-[#3c9aab] text-white rounded-lg hover:bg-blue-600 transition"
               >
                 Browse Products
@@ -181,7 +182,7 @@ export default function Cart() {
                   Clear Cart
                 </button>
                 <button
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate('/Shopping')}
                   className="w-full sm:w-auto px-6 py-3 bg-white border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition"
                 >
                   Continue Shopping

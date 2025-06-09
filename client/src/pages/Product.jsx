@@ -5,6 +5,7 @@ import axios from 'axios';
 import CartContext from '../context/CartContext';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext';
+  const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Product() {
   const { id } = useParams();
@@ -99,7 +100,7 @@ export default function Product() {
           </p>
           <button
             className="bg-[#3c9aab] text-white px-6 py-3 rounded-full font-medium hover:bg-[#2a7d8c] transition"
-            onClick={() => nav('/')}
+            onClick={() => nav('/Shopping')}
           >
             Continue Shopping
           </button>
@@ -111,11 +112,11 @@ export default function Product() {
   // Normalize single image URL
   const normalizeImage = img => {
     if (!img) return '';
-    return img.startsWith('/uploads') ? `http://localhost:5000${img}` : img;
+    return img.startsWith('/uploads') ? `${API_URL}${img}` : img;
   };
 
   return (
-    <div className="bg-[#6c9aab]/100 min-h-screen">
+    <div className="bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen">
       {/* Product Section */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

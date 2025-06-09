@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+  const API_URL = import.meta.env.VITE_API_URL;
 
 // Simple SVG components for heart and star icons
 const HeartIcon = ({ size = 18, className = '' }) => (
@@ -30,10 +31,10 @@ const StarIcon = ({ filled = false, size = 14, className = '' }) => (
   </svg>
 );
 
-export default function ProductCard({ product }) {
+export default function ProductCardS({ product }) {
   const imageSrc =
     product.image && product.image.startsWith('/uploads')
-      ? `http://localhost:5000${product.image}`
+      ? `${API_URL}${product.image}`
       : product.image;
 
   const cardVariants = {

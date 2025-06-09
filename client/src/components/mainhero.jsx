@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const images = [
   '/src/assets/hero1.png',
@@ -103,12 +104,16 @@ export default function HeroSection() {
             </ul>
             
             <div className="flex flex-col sm:flex-row gap-4">
+              <Link to={"/Shopping"}>
               <button className="bg-[#3c9aab] hover:bg-[#2a7d8c] text-white font-medium py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
                 Shop Collection
               </button>
+              </Link>
+              <Link to={"/Shopping"}>
               <button className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-full transition duration-300">
                 View New Arrivals
               </button>
+              </Link>
             </div>
           </div>
         </motion.div>

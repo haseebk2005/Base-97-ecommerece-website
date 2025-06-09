@@ -6,6 +6,7 @@ import AuthContext from '../context/AuthContext.jsx';
 import CartContext from '../context/CartContext';
 import Footer from '../components/Footer.jsx';
 import { motion } from 'framer-motion';
+  const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Order() {
   const { id } = useParams();
@@ -48,7 +49,7 @@ export default function Order() {
 
   const normalizeImage = (img) => {
     if (!img) return '';
-    return img.startsWith('/uploads') ? `http://localhost:5000${img}` : img;
+    return img.startsWith('/uploads') ? `${API_URL}${img}` : img;
   };
 
   if (loading)
@@ -214,7 +215,7 @@ export default function Order() {
                       <p className="font-medium text-black">
                         {order.paymentMethod === 'COD'
                           ? 'Cash on Delivery'
-                          : 'Jazz Cash/ EasyPaisa/ Bank Account'}
+                          : <span>Jazz Cash (+92 -- ---) <br></br> EasyPaisa (+92 -- ---) <br></br> Bank Account (UBL, Acc: 00000)</span>}
                       </p>
                     </div>
                     <div>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext.jsx';
 import { motion } from 'framer-motion';
@@ -252,9 +252,11 @@ export default function TrackOrder() {
           </div>
           
           <div className="mt-8 flex flex-col sm:flex-row justify-between gap-4">
+            <Link to={"/Shopping"}>
             <button className="px-6 py-3 bg-[#3c9aab] text-white rounded-lg font-medium hover:bg-[#2a7d8c] transition">
               Continue Shopping
             </button>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -271,7 +273,7 @@ export default function TrackOrder() {
             </div>
             <div>
               <h3 className="font-medium text-gray-800 mb-1">Call Support</h3>
-              <p className="text-gray-600">+1 (800) 555-1234</p>
+              <p className="text-gray-600"><a href='tel:+92'>+1 (800) 555-1234</a></p>
             </div>
           </div>
           
@@ -283,7 +285,7 @@ export default function TrackOrder() {
             </div>
             <div>
               <h3 className="font-medium text-gray-800 mb-1">Email Us</h3>
-              <p className="text-gray-600">support@fitgear.com</p>
+              <p className="text-gray-600"><a href='mailto:g@g.c'>support@fitgear.com</a></p>
             </div>
           </div>
           

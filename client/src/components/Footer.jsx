@@ -95,7 +95,7 @@ export default function Footer() {
           <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold mb-5 pb-2 border-b border-gray-700">Company</h3>
             <ul className="space-y-3">
-              {['Home', 'About Us', 'Blog', 'Affiliate Link'].map((item, index) => {
+              {['Home','Shopping', 'About Us', 'Blog', 'Affiliate Link'].map((item, index) => {
                 let href = '/';
                 if (item === 'Home') {
                   href = '/';
@@ -103,6 +103,9 @@ export default function Footer() {
                   href = '/blog';
                 } else if (item === 'Affiliate Link') {
                   href = '/affiliate/request';
+                }
+                 else if (item === 'Shopping') {
+                  href = '/Shopping';
                 }
 
                 return (
