@@ -20,6 +20,8 @@ export default function AdminRoute({ children }) {
       document.body.classList.remove('bg-gray-900');
     };
   }, []);
+  console.log('AdminRoute user:', user);
+  console.log('isAdmin flag:', user?.isAdmin);
 
   // If admin, render the page
   if (user && user.isAdmin) {
