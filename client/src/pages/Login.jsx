@@ -1,6 +1,6 @@
 // client/src/pages/Login.jsx
 import { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import { motion } from 'framer-motion';
 
@@ -9,13 +9,15 @@ export default function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const location = useLocation();        // ← pull from router
+  const from = location.state?.from?.pathname || '/';
 
   const submit = async e => {
     e.preventDefault();
     try {
       setError(null);
       await login(form.email, form.password);
-      navigate('/');
+      navigate(from, { replace: true });;
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
       setError(err.response?.data?.message || err.message || 'Login failed. Please try again.');

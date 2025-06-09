@@ -1,12 +1,14 @@
-import { Navigate } from 'react-router-dom';
+// client/src/components/AdminRoute.jsx
+import { Navigate, useLocation } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext';
 
 export default function AdminRoute({ children }) {
   const { user } = useContext(AuthContext);
+  const location = useLocation();              // ← grab the current location
 
-  // Redirect effect animation state
+  // Redirect animation variants
   const redirectVariants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
@@ -19,6 +21,7 @@ export default function AdminRoute({ children }) {
     };
   }, []);
 
+  // If admin, render the page
   if (user && user.isAdmin) {
     return (
       <motion.div
@@ -32,6 +35,7 @@ export default function AdminRoute({ children }) {
     );
   }
 
+  // Otherwise redirect to login *and* stash where they were going
   return (
     <motion.div
       variants={redirectVariants}
@@ -39,7 +43,11 @@ export default function AdminRoute({ children }) {
       animate="visible"
       className="min-h-screen flex items-center justify-center bg-gray-900"
     >
-      <Navigate to="/login" replace />
+      <Navigate
+        to="/login"
+        state={{ from: location }}
+        replace
+      />
     </motion.div>
   );
 }
