@@ -17,6 +17,7 @@ import {
 } from 'react-icons/fa';
 import { FiRefreshCw } from 'react-icons/fi';
 import Footer from '../components/Footer.jsx';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function ShoppingPage() {
   const [allProducts, setAllProducts] = useState([]);
@@ -40,7 +41,7 @@ export default function ShoppingPage() {
   // Fetch products & categories
   useEffect(() => {
     setLoading(true);
-    axios.get('/api/products')
+    axios.get(`${API_URL}/api/products`)
       .then(res => {
         setAllProducts(res.data);
         setProducts(res.data);
