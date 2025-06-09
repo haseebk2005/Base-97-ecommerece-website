@@ -5,7 +5,7 @@ import axios from 'axios';
 import CartContext from '../context/CartContext';
 import { motion } from 'framer-motion';
 import AuthContext from '../context/AuthContext';
-  const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Product() {
   const { id } = useParams();
@@ -28,8 +28,8 @@ export default function Product() {
       try {
         setLoading(true);
         const [productRes, reviewsRes] = await Promise.all([
-          axios.get(`/api/products/${id}`),
-          axios.get(`/api/reviews/${id}`)
+          axios.get(`${API_URL}/api/products/${id}`),
+          axios.get(`${API_URL}/api/reviews/${id}`)
         ]);
         setProduct(productRes.data);
         setReviews(reviewsRes.data);
@@ -50,7 +50,7 @@ export default function Product() {
     try {
       setReviewLoading(true);
       await axios.post('/api/reviews', { productId: id, rating, comment }, config);
-      const { data } = await axios.get(`/api/reviews/${id}`);
+      const { data } = await axios.get(`${API_URL}/api/reviews/${id}`);
       setReviews(data);
       setComment('');
       setRating(5);
