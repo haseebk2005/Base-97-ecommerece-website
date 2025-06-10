@@ -9,9 +9,12 @@ module.exports = async function seedAdmin() {
   try {
     // Ensure DB connection
     await sequelize.authenticate();
-
+    const ADMIN_PASS = process.env.ADMIN_PASS;
+    if (!ADMIN_PASS) {
+      throw new Error('Please set ADMIN_PASS in your environment');
+    }
     // Hash your chosen admin password
-    const passwordHash = await bcrypt.hash('Iknowit2005@', 10);
+    const passwordHash = await bcrypt.hash(ADMIN_PASS, 10);
 
     // Find or create the admin user
     const [user, created] = await User.findOrCreate({
